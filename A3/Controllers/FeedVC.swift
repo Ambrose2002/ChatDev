@@ -58,7 +58,11 @@ extension FeedVC: UICollectionViewDataSource {
         // TODO: Return the number of rows for each section
         // HINT: Use `section` with an if statement
 
-        return 0 // Replace this line
+        if section == 0 {
+            return 1
+        } else {
+            return posts.count
+        }
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
