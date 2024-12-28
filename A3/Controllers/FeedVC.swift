@@ -78,7 +78,13 @@ extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // TODO: Return the inset for the spacing between the two sections
 
-        return UIEdgeInsets() // Replace this line
+        if section == 0 {
+                // First section: Top padding and bottom padding (space below the section)
+                return UIEdgeInsets(top: 24, left: 24, bottom: 12, right: 24)
+        } else {
+                // Second section: Top padding (space above the section)
+                return UIEdgeInsets(top: 12, left: 24, bottom: 24, right: 24)
+        }
     }
 
 }
