@@ -59,7 +59,9 @@ class PostCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            imageView.widthAnchor.constraint(equalToConstant: 32),
+            imageView.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
     
@@ -116,7 +118,9 @@ class PostCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             likeButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 80),
             likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            likeButton.widthAnchor.constraint(equalToConstant: 24),
+            likeButton.heightAnchor.constraint(equalToConstant: 24)
         ])
         
     }
