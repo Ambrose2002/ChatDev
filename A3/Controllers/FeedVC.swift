@@ -14,6 +14,10 @@ class FeedVC: UIViewController {
     private var collectionView: UICollectionView!
 
     // MARK: - Properties (data)
+    private var posts: [Post] = [
+        Post(id: "0", likes: ["ab2838"], message: "Ola!", time: Date()),
+        Post(id: "1", likes: ["ab2838", "cd12"], message: "Hello World", time: Date())
+    ]
 
     // MARK: - viewDidLoad
 
