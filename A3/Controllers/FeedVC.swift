@@ -54,6 +54,24 @@ extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // TODO: Return the cells for each section
         // HINT: Use `indexPath.section` with an if statement
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreatePostCollectionViewCell.reuse, for: indexPath) as? CreatePostCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            
+            return cell
+        }
+        
+        else if indexPath.section == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCollectionViewCell.reuse, for: indexPath) as? PostCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            
+            cell.configure(post: posts[indexPath.row])
+            return cell
+        }
 
         return UICollectionViewCell()
     }
