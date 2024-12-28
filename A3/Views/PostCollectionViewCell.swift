@@ -53,7 +53,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     func setUpImage() {
         imageView.image = UIImage(named: "AppDevLogo")
         imageView.layer.cornerRadius = 16
-        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(imageView)
