@@ -90,7 +90,12 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // TODO: Return the size for each cell per section
         // HINT: Use `indexPath.section` with an if statement
-        return CGSize() // Replace this line
+        if indexPath.section == 0 {
+            return CGSize(width: collectionView.frame.width, height: 131)
+        }
+        else {
+            return CGSize(width: collectionView.frame.width, height: 184)
+        }
     }
 
 }
