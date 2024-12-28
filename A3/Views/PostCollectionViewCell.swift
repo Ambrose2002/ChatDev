@@ -29,7 +29,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = UIColor.a3.white
-//        layer.cornerRadius = 16
+        layer.cornerRadius = 16
         
         setUpImage()
         setUpNameLabel()
@@ -94,6 +94,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         messageLabel.font = .systemFont(ofSize: 14)
         messageLabel.textColor = UIColor.a3.black
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.numberOfLines = 3
         
         contentView.addSubview(messageLabel)
         
