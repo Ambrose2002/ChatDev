@@ -29,7 +29,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = UIColor.a3.white
-        layer.cornerRadius = 16
+//        layer.cornerRadius = 16
         
         setUpImage()
         setUpNameLabel()
@@ -68,10 +68,27 @@ class PostCollectionViewCell: UICollectionViewCell {
         nameLabel.text = self.name
         nameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         nameLabel.textColor = UIColor.a3.black
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(nameLabel)
+        
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding)
+        ])
     }
     
     func setUpTimeAgoLabel() {
+        timeAgoLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        timeAgoLabel.textColor = UIColor.a3.silver
+        timeAgoLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        contentView.addSubview(timeAgoLabel)
+        
+        NSLayoutConstraint.activate([
+            timeAgoLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            timeAgoLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 17.5)
+        ])
     }
     
     func setUpMessageLabel() {
