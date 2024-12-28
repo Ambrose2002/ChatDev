@@ -122,7 +122,16 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     func setUpNumberOfLikesLabel() {
+        numberOfLikesLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        numberOfLikesLabel.textColor = UIColor.a3.black
+        numberOfLikesLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        contentView.addSubview(numberOfLikesLabel)
+        
+        NSLayoutConstraint.activate([
+            numberOfLikesLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 4),
+            numberOfLikesLabel.topAnchor.constraint(equalTo: likeButton.topAnchor, constant: 5)
+        ])
     }
     
 }
