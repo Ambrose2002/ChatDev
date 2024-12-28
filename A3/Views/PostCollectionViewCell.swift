@@ -11,15 +11,16 @@ import UIKit
 class PostCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties (view)
-    private let imageView = UIImageView()
-    private let messageView = UILabel()
-    private let likeButtonView = UIButton()
-    private let numberOfLikesView = UILabel()
+    private let image = UIImageView()
+    private let messageLabel = UILabel()
+    private let likeButton = UIButton()
+    private let numberOfLikesLabel = UILabel()
+    private let timeAgoLabel = UILabel()
     
     // MARK: - Properties (data)
     private let name: String = "Anonymous"
     private var message: String!
-    private var date: String!
+    private var timeAgo: String!
     private var numerOfLikes: Int!
     static let reuse: String = "PostCollectionViewCellReuse"
     
@@ -36,7 +37,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     func configure(post: Post) {
         self.message = post.message
-        self.date = post.time.convertToAgo()
+        self.timeAgo = post.time.convertToAgo()
         self.numerOfLikes = post.likes.count
     }
     
