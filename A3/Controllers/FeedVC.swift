@@ -31,6 +31,13 @@ class FeedVC: UIViewController {
         title = "ChatDev"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.a3.offWhite
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+                .foregroundColor: UIColor.a3.black // Standard title color
+        ]
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+                .foregroundColor: UIColor.a3.black // Large title color
+        ]
 
         setupCollectionView()
     }

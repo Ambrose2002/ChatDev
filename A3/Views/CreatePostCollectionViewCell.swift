@@ -39,6 +39,12 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     private func setupTextField() {
         textField.placeholder = "✏️ What's on your mind?"
         textField.font = .systemFont(ofSize: 16)
+        textField.textColor = UIColor.a3.black
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray // Replace UIColor.gray with your desired color
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string:textField.placeholder ?? "", attributes: attributes)
 
         contentView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
