@@ -92,10 +92,32 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     func setUpMessageLabel() {
+        messageLabel.font = .systemFont(ofSize: 14)
+        messageLabel.textColor = UIColor.a3.black
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        contentView.addSubview(messageLabel)
+        
+        NSLayoutConstraint.activate([
+            messageLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
+            messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
+        ])
     }
     
     func setUpLikeButton() {
+        
+        let heartImage = UIImage(systemName: "heart")
+        likeButton.setImage(heartImage, for: .normal)
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(likeButton)
+        
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 80),
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+        ])
         
     }
     
