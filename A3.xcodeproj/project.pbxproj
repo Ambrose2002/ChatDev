@@ -18,6 +18,7 @@
 		2E32E87E2AF1AE75005D5325 /* CreatePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32E87D2AF1AE75005D5325 /* CreatePostCollectionViewCell.swift */; };
 		2E32E8812AF1B109005D5325 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2E32E8802AF1B109005D5325 /* Alamofire */; };
 		2EC0B7CB2AF1B6C700F8F6F7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0B7CA2AF1B6C700F8F6F7 /* Post.swift */; };
+		AB3361F92D20678300D81BFD /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3361F82D20678300D81BFD /* PostCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		2E32E8782AF1AE3B005D5325 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2E32E87D2AF1AE75005D5325 /* CreatePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		2EC0B7CA2AF1B6C700F8F6F7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AB3361F82D20678300D81BFD /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				2E32E87D2AF1AE75005D5325 /* CreatePostCollectionViewCell.swift */,
+				AB3361F82D20678300D81BFD /* PostCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				2E32E8792AF1AE3B005D5325 /* NetworkManager.swift in Sources */,
 				2E32E8592AF1AAF6005D5325 /* AppDelegate.swift in Sources */,
 				2E32E85B2AF1AAF6005D5325 /* SceneDelegate.swift in Sources */,
+				AB3361F92D20678300D81BFD /* PostCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
