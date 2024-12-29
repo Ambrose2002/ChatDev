@@ -46,8 +46,6 @@ class FeedVC: UIViewController {
 
     private func setupCollectionView() {
         let padding: CGFloat = 24   // Use this constant when configuring constraints
-
-        // TODO: Set Up CollectionView
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
