@@ -41,8 +41,8 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = UIColor.a3.black
         
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.gray // Replace UIColor.gray with your desired color
+        let attributes: [NSAttributedString.Key: UIColor] = [
+            .foregroundColor: UIColor.gray
         ]
         textField.attributedPlaceholder = NSAttributedString(string:textField.placeholder ?? "", attributes: attributes)
 
