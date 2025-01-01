@@ -10,11 +10,10 @@ import UIKit
 class FeedVC: UIViewController {
 
     // MARK: - Properties (view)
-
     private var collectionView: UICollectionView!
 
     // MARK: - Properties (data)
-    
+    private var posts: [Post] = []
 
     // MARK: - viewDidLoad
 
@@ -33,6 +32,21 @@ class FeedVC: UIViewController {
         ]
 
         setupCollectionView()
+        fetchPosts()
+    }
+    
+    // MARK: -Networking
+
+    private func fetchPosts() {
+        NetworkManager.shared.fetchPosts { [weak self] posts in
+            guard let self = self else {return}
+            
+            self.posts = posts
+            
+            DispatchQueue.main.async{
+                self.collectionView.reloadData()
+            }
+        }
     }
 
     // MARK: - Set Up Views
@@ -60,6 +74,7 @@ class FeedVC: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
     }
 
 }
@@ -90,7 +105,7 @@ extension FeedVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(post: Post.dummy[indexPath.row])
+            cell.configure(post: posts[indexPath.row])
             return cell
         }
 
@@ -104,7 +119,7 @@ extension FeedVC: UICollectionViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return Post.dummy.count
+            return posts.count
         }
     }
 
