@@ -22,7 +22,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     private let name: String = "Anonymous"
     let padding: CGFloat = 24
     static let reuse: String = "PostCollectionViewCellReuse"
-    private var post: Post!
     
     
     // MARK: - init
@@ -36,6 +35,8 @@ class PostCollectionViewCell: UICollectionViewCell {
         setUpNameLabel()
         setUpTimeAgoLabel()
         setUpMessageLabel()
+        setUpLikeButton()
+        setUpNumberOfLikesLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -46,10 +47,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         messageLabel.text = post.message
         timeAgoLabel.text = post.time.convertToAgo()
         numberOfLikesLabel.text = "\(post.likes.count) likes"
-        self.post = post
-        
-        setUpLikeButton()
-        setUpNumberOfLikesLabel()
     }
     
     // MARK: - Set Up Views
@@ -112,15 +109,9 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     func setUpLikeButton() {
         
+        let heartImage = UIImage(systemName: "heart")
+        likeButton.setImage(heartImage, for: .normal)
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        
-        if post.likes.contains(FeedVC.netId) {
-            editLikeButton(color: .a3.ruby, selected: true, image: "heart.fill")
-        } else {
-            editLikeButton(color: nil, selected: false, image: "heart")
-            
-        }
         
         contentView.addSubview(likeButton)
         
@@ -134,14 +125,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func editLikeButton(color: UIColor?, selected: Bool, image: String) {
-        likeButton.setImage(UIImage(systemName: image), for: .normal)
-        likeButton.isSelected = selected
-        if let color {
-            likeButton.tintColor = color
-        }
-    }
-    
     func setUpNumberOfLikesLabel() {
         numberOfLikesLabel.font = .systemFont(ofSize: 12, weight: .medium)
         numberOfLikesLabel.textColor = UIColor.a3.black
@@ -153,24 +136,6 @@ class PostCollectionViewCell: UICollectionViewCell {
             numberOfLikesLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 4),
             numberOfLikesLabel.topAnchor.constraint(equalTo: likeButton.topAnchor, constant: 5)
         ])
-    }
-    
-    // MARK: - Button Helpers
-    @objc func likeButtonTapped() {
-        if !likeButton.isSelected{
-            NetworkManager.shared.likePost(postId: post.id, netId: FeedVC.netId) { [weak self] success in
-                
-                guard let self else {return}
-                
-                DispatchQueue.main.async {
-                    self.editLikeButton(color: .a3.ruby, selected: true, image: "heart.fill")
-                    self.numberOfLikesLabel.text = "\(self.post.likes.count + 1) likes"
-                }
-            }
-        }
-        else {
-            print("You already like this post")
-        }
     }
     
 }
