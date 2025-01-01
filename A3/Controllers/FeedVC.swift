@@ -12,10 +12,13 @@ class FeedVC: UIViewController {
     // MARK: - Properties (view)
     private var collectionView: UICollectionView!
     private var refreshControl = UIRefreshControl()
+    private let topSortLabel = UILabel()
+    private let newSortLabel = UILabel()
 
     // MARK: - Properties (data)
     private var posts: [Post] = []
     static let netId: String = "ab2838"
+    private var isTopSelected = true
 
     // MARK: - viewDidLoad
 
@@ -32,9 +35,12 @@ class FeedVC: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [
                 .foregroundColor: UIColor.a3.black // Large title color
         ]
-
+        setupTopSortLabel()
+        setupNewSortLabel()
         setupCollectionView()
         fetchPosts()
+        
+        setupNavigationBarTitleView()
     }
     
     // MARK: -Networking
@@ -53,6 +59,39 @@ class FeedVC: UIViewController {
     }
 
     // MARK: - Set Up Views
+    
+    private func setupTopSortLabel() {
+        topSortLabel.text = "Top"
+        let topSortTapGesture = UITapGestureRecognizer(target: self, action: #selector(topSortLabelTapped))
+        topSortLabel.isUserInteractionEnabled = true
+        topSortLabel.textColor = .a3.black
+        topSortLabel.addGestureRecognizer(topSortTapGesture)
+        
+        view.addSubview(topSortLabel)
+        
+        topSortLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    
+    private func setupNewSortLabel() {
+        newSortLabel.text = "New"
+        let newSortTapGesture = UITapGestureRecognizer(target: self, action: #selector(newSortLabelTapped))
+        newSortLabel.isUserInteractionEnabled = true
+        newSortLabel.textColor = .a3.black
+        newSortLabel.addGestureRecognizer(newSortTapGesture)
+        
+    }
+    
+    private func setupNavigationBarTitleView() {
+
+        
+        let stackView = UIStackView(arrangedSubviews: [topSortLabel, newSortLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.alignment = .center
+        
+        navigationItem.titleView = stackView
+    }
 
     private func setupCollectionView() {
         let padding: CGFloat = 24   // Use this constant when configuring constraints
