@@ -11,6 +11,7 @@ class FeedVC: UIViewController {
 
     // MARK: - Properties (view)
     private var collectionView: UICollectionView!
+    private var refreshControl = UIRefreshControl()
 
     // MARK: - Properties (data)
     private var posts: [Post] = []
@@ -37,7 +38,7 @@ class FeedVC: UIViewController {
     
     // MARK: -Networking
 
-    private func fetchPosts() {
+    @objc private func fetchPosts() {
         NetworkManager.shared.fetchPosts { [weak self] posts in
             guard let self = self else {return}
             
@@ -45,6 +46,7 @@ class FeedVC: UIViewController {
             
             DispatchQueue.main.async{
                 self.collectionView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -64,6 +66,8 @@ class FeedVC: UIViewController {
         collectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCollectionViewCell.reuse)
         collectionView.delegate = self
         collectionView.dataSource = self
+        refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
