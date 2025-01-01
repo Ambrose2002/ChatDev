@@ -81,6 +81,42 @@ class FeedVC: UIViewController {
         ])
         
     }
+    
+    @objc private func topSortLabelTapped() {
+        isTopSelected = true
+        updateTabAppearance()
+        sortPosts(by: .top)
+    }
+    
+    @objc private func newSortLabelTapped() {
+        isTopSelected = false
+        updateTabAppearance()
+        sortPosts(by: .new)
+    }
+    
+    private func updateTabAppearance() {
+        if isTopSelected {
+            topSortLabel.textColor = .a3.ruby
+            newSortLabel.textColor = .a3.silver
+        } else {
+            topSortLabel.textColor = .a3.silver
+            newSortLabel.textColor = .a3.ruby
+        }
+    }
+    
+    private func sortPosts(by sortType: SortType) {
+        switch sortType {
+        case .top:
+            posts.sort {
+                $0.likes.count > $1.likes.count
+            }
+        case .new:
+            posts.sort {
+                $0.time > $1.time
+            }
+        }
+        collectionView.reloadData()
+    }
 
 }
 
@@ -163,4 +199,10 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
         }
     }
 
+}
+
+// MARK: - enum
+enum SortType {
+    case top
+    case new
 }
