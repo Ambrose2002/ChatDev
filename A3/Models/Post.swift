@@ -10,7 +10,7 @@ import Foundation
 struct Post: Codable {
     // TODO: Create a Post Struct here
     let id: String
-    let likes: [String]
+    var likes: [String]
     let message: String
     let time: Date
 }

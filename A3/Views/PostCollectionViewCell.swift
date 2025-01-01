@@ -118,7 +118,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         if post.likes.contains(FeedVC.netId) {
             editLikeButton(color: .a3.ruby, selected: true, image: "heart.fill")
         } else {
-            editLikeButton(color: nil, selected: false, image: "heart")
+            editLikeButton(color: .a3.silver, selected: false, image: "heart")
             
         }
         
@@ -134,12 +134,10 @@ class PostCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func editLikeButton(color: UIColor?, selected: Bool, image: String) {
+    func editLikeButton(color: UIColor, selected: Bool, image: String) {
         likeButton.setImage(UIImage(systemName: image), for: .normal)
         likeButton.isSelected = selected
-        if let color {
-            likeButton.tintColor = color
-        }
+        likeButton.tintColor = color
     }
     
     func setUpNumberOfLikesLabel() {
@@ -163,13 +161,25 @@ class PostCollectionViewCell: UICollectionViewCell {
                 guard let self else {return}
                 
                 DispatchQueue.main.async {
+                    self.post.likes.append(FeedVC.netId)
                     self.editLikeButton(color: .a3.ruby, selected: true, image: "heart.fill")
-                    self.numberOfLikesLabel.text = "\(self.post.likes.count + 1) likes"
+                    self.numberOfLikesLabel.text = "\(self.post.likes.count) likes"
                 }
             }
         }
         else {
-            print("You already like this post")
+            NetworkManager.shared.unlikePost(postId: post.id, netId: FeedVC.netId) { [weak self] success in
+                
+                guard let self else {return}
+                
+                DispatchQueue.main.async {
+                    if let index = self.post.likes.firstIndex(of: FeedVC.netId) {
+                        self.post.likes.remove(at: index)
+                    }
+                    self.editLikeButton(color: .a3.silver, selected: false, image: "heart")
+                    self.numberOfLikesLabel.text = "\(self.post.likes.count) likes"
+                }
+            }
         }
     }
     
