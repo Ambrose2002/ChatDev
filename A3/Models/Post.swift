@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post {
+struct Post: Codable {
     // TODO: Create a Post Struct here
     let id: String
     let likes: [String]
