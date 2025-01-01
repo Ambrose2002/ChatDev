@@ -15,6 +15,7 @@ class FeedVC: UIViewController {
 
     // MARK: - Properties (data)
     private var posts: [Post] = []
+    static let netId: String = "ab2838"
 
     // MARK: - viewDidLoad
 
