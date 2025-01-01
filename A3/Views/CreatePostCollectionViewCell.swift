@@ -64,6 +64,8 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         postButton.setTitleColor(UIColor.a3.white, for: .normal)
         postButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
         postButton.addTarget(self, action: #selector(createPost), for: .touchUpInside)
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        postButton.isEnabled = false
 
         contentView.addSubview(postButton)
         postButton.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +87,18 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     }
 
     @objc private func createPost() {
-        // TODO: Send a POST request to create a post
+        
+        let message = self.textField.text!
+        
+        NetworkManager.shared.createPosts(message: message){ [weak self] success in
+            guard let self else {return}
+            
+            DispatchQueue.main.async {
+                self.textField.text = ""
+                self.textField.resignFirstResponder()
+            }
+        }
     }
+    
 
 }

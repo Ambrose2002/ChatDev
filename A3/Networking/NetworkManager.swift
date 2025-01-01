@@ -40,7 +40,7 @@ class NetworkManager {
             }
     }
     
-    func createPosts(message: String, completion: @escaping (Post) -> Void) {
+    func createPosts(message: String, completion: @escaping (Bool) -> Void) {
         
         let parameters: Parameters = [
             "message": message
@@ -55,7 +55,7 @@ class NetworkManager {
                 switch response.result {
                 case .success(let post):
                     print("Successfully added \(post.message) to posts")
-                    completion(post)
+                    completion(true)
                 case .failure(let error):
                     print("Error in NetworkManager.createPosts: \(error)")
                 }
