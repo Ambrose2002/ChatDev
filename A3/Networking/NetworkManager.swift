@@ -58,6 +58,31 @@ class NetworkManager {
                     completion(true)
                 case .failure(let error):
                     print("Error in NetworkManager.createPosts: \(error)")
+                    completion(false)
+                }
+            }
+    }
+    
+    func likePost(postId: String, netId: String, completion: @escaping (Bool) -> Void) {
+        
+        let parameters: Parameters = [
+            "post_id": postId,
+            "net_id": netId
+        ]
+        
+        let likeEndpoint = "\(devEndpoint)like"
+        
+        AF.request(likeEndpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodable (of: Post.self, decoder: decoder){ response in
+                
+                switch response.result {
+                case .success(let post):
+                    print("\(netId) successfully liked post with id \(post.id)")
+                    completion(true)
+                case .failure(let error):
+                    print("Error in NetworkManager.likePost: \(error)")
+                    completion(false)
                 }
             }
     }
