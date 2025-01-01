@@ -39,5 +39,27 @@ class NetworkManager {
                 }
             }
     }
+    
+    func createPosts(message: String, completion: @escaping (Post) -> Void) {
+        
+        let parameters: Parameters = [
+            "message": message
+        ]
+        
+        let postEndpoint = "\(devEndpoint)create"
+        
+        AF.request(postEndpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodable(of: Post.self, decoder: decoder) { response in
+                
+                switch response.result {
+                case .success(let post):
+                    print("Successfully added \(post.message) to posts")
+                    completion(post)
+                case .failure(let error):
+                    print("Error in NetworkManager.createPosts: \(error)")
+                }
+            }
+    }
 
 }
