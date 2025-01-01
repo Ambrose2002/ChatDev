@@ -79,6 +79,10 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Button Helpers
+    
+    @objc private func textFieldDidChange() {
+        postButton.isEnabled = !(self.textField.text?.isEmpty ?? true)
+    }
 
     @objc private func createPost() {
         // TODO: Send a POST request to create a post
